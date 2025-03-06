@@ -14,7 +14,6 @@ def ask_constitution(question):
         return "Please enter a question."
 
     try:
-        # Send the question to Groq API
         chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": "You are an assistant that answers questions based on the Constitution of Kenya."},
@@ -36,6 +35,5 @@ interface = gr.Interface(
     description="Ask questions related to the Constitution of Kenya, and get AI-generated answers.",
 )
 
-# Launch the Gradio app
 if __name__ == "__main__":
-    interface.launch()
+    interface.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 8080)))
